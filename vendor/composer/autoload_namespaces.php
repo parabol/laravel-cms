@@ -7,6 +7,7 @@ $baseDir = dirname($vendorDir);
 
 return array(
     'thomaswelton\\GravatarLib\\' => array($vendorDir . '/thomaswelton/gravatarlib'),
+    'Zofe\\Rapyd\\' => array($vendorDir . '/zofe/rapyd/src'),
     'Whoops' => array($vendorDir . '/filp/whoops/src'),
     'Thomaswelton\\LaravelGravatar' => array($vendorDir . '/thomaswelton/laravel-gravatar/src'),
     'System' => array($vendorDir . '/phpseclib/phpseclib/phpseclib'),
