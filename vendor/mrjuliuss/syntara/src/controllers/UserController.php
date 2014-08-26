@@ -34,16 +34,31 @@ class UserController extends BaseController
         {
             $emptyUsers = $emptyUsers->where('users.id', $userId);
         }
+
         $username = Input::get('usernameSearch');
         if(!empty($username))
         {
             $emptyUsers = $emptyUsers->where('username', 'LIKE', '%'.$username.'%');
         }
+
+        $firstName = Input::get('firstNameSearch');
+        if(!empty($firstName))
+        {
+            $emptyUsers = $emptyUsers->where('first_name', 'LIKE', '%'.$firstName.'%');
+        }
+
+        $lastName = Input::get('lastNameSearch');
+        if(!empty($lastName))
+        {
+            $emptyUsers = $emptyUsers->where('last_name', 'LIKE', '%'.$lastName.'%');
+        }
+
         $email = Input::get('emailSearch');
         if(!empty($email))
         {
             $emptyUsers = $emptyUsers->where('email', 'LIKE', '%'.$email.'%');
         }
+
         $bannedUsers = Input::get('bannedSearch');
         if(isset($bannedUsers) && $bannedUsers !== "")
         {
@@ -51,6 +66,8 @@ class UserController extends BaseController
                 ->where('throttle.banned', '=', $bannedUsers)
                 ->select('users.id', 'users.username', 'users.last_name', 'users.first_name', 'users.email', 'users.permissions', 'users.activated');
         }
+
+        $emptyUsers->distinct();
 
         $users = $emptyUsers->paginate(Config::get('syntara::config.item-perge-page'));
         $datas['links'] = $users->links();
@@ -338,7 +355,7 @@ class UserController extends BaseController
 
             $currentUser = Sentry::getUser();
             $permissions = (empty($permissions)) ? '' : json_encode($permissions);
-            $hasPermissionManagement = $currentUser->hasAccess('permissions-management') || $currentUser->hasAccess('superuser');
+            $hasPermissionManagement = $currentUser->hasAccess(Config::get('syntara::permissions.addUserPermission')) || $currentUser->hasAccess('superuser');
             if($hasPermissionManagement === true)
             {
                 DB::table('users')
@@ -362,7 +379,7 @@ class UserController extends BaseController
                     $this->_banUser($userId, $banned);
                 }
 
-                if($currentUser->hasAccess('user-group-management'))
+                if($currentUser->hasAccess(Config::get('syntara::permissions.addUserGroup')))
                 {
                     $groups = (Input::get('groups') === null) ? array() : Input::get('groups');
                     $userGroups = $user->getGroups()->toArray();

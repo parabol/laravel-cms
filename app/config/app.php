@@ -125,6 +125,7 @@ return array(
 		'Mrjuliuss\Syntara\SyntaraServiceProvider',
 		'Jakubsacha\Adminlte\AdminlteServiceProvider',
         'Zofe\Rapyd\RapydServiceProvider',
+        'Dollar\Generators\GeneratorsServiceProvider',
 	),
 
 	/*

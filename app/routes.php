@@ -16,3 +16,5 @@ Route::get('/', function()
 	return View::make('hello');
 });
 Route::controller('rapyd-demo', 'Zofe\\Rapyd\\Controllers\\DemoController');
+
+Route::resource('pages', 'PagesController');
