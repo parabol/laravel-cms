@@ -15,6 +15,8 @@ Route::get('/', function()
 {
 	return View::make('hello');
 });
-Route::controller('rapyd-demo', 'Zofe\\Rapyd\\Controllers\\DemoController');
-
-Route::resource('pages', 'PagesController');
+Route::resource('pages', 'PagesController', array('only' => array('index','create')));
+Route::post('pages/create', 'PagesController@create');
+Route::get('pages/edit', 'PagesController@edit');
+Route::post('pages/edit', 'PagesController@edit');
+//Route::get('pages/edit?delete={id}', array('as' => 'delete','uses' => 'PagesController@destroy'));
