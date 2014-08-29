@@ -1,23 +1,16 @@
-@extends('layouts.scaffold')
+@extends(Config::get('syntara::views.master'))
 
-@section('main')
-
+@section('content')
 <div class="row">
-    <div class="col-md-10 col-md-offset-2">
-        <h1>Create Page</h1>
-
-        @if ($errors->any())
-        	<div class="alert alert-danger">
-        	    <ul>
-                    {{ implode('', $errors->all('<li class="error">:message</li>')) }}
-                </ul>
-        	</div>
-        @endif
+    <div class="col-lg-12">
+        <div class="box box-primary">
+            <div class="box-header">
+                <h1 class="box-title">{{ trans('pages.new') }}</h1>
+            </div>
+            <div class="box-body">
+                {{ $form }}
+            </div>
+        </div>
     </div>
 </div>
-
-{{ $form }}
-
 @stop
-
-

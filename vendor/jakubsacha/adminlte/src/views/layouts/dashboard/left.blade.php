@@ -42,6 +42,14 @@
                         @endif
                     </ul>
                 </li>
+                @if($currentUser->hasAccess('indexPages'))
+                <li>
+                    <a href="{{ URL::route('indexPages') }}"><i class="fa fa-list-alt"></i> 
+                        <span>{{ trans('pages.titles.menu') }}</span>
+                        <i class="fa fa-angle-left pull-right"></i>
+                    </a>
+                </li>
+                @endif
                 @endif
                 {{ (!empty($navPagesRight)) ? $navPagesRight : '' }}
             @endif

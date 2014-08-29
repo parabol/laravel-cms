@@ -10,17 +10,17 @@
             <th{{ $column->buildAttributes() }}>
             @if ($column->orderby)
                 @if ($dg->onOrderby($column->orderby_field, 'asc'))
-                    <span class="glyphicon glyphicon-arrow-up"></span>
+                    <span class="fa fa-arrow-up"></span>
                 @else
                     <a href="{{ $dg->orderbyLink($column->orderby_field,'asc') }}">
-                        <span class="glyphicon glyphicon-arrow-up"></span>
+                        <span class="fa fa-arrow-up"></span>
                     </a>
                 @endif
                 @if ($dg->onOrderby($column->orderby_field, 'desc'))
-                    <span class="glyphicon glyphicon-arrow-down"></span>
+                    <span class="fa fa-arrow-down"></span>
                 @else
                     <a href="{{ $dg->orderbyLink($column->orderby_field,'desc') }}">
-                        <span class="glyphicon glyphicon-arrow-down"></span>
+                        <span class="fa fa-arrow-down"></span>
                     </a>
                 @endif
              @endif

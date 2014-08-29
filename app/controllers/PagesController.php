@@ -1,4 +1,7 @@
 <?php
+
+use MrJuliuss\Syntara\Controllers\BaseController;
+
 use Illuminate\Support\Facades\View;
 use Illuminate\Support\Facades\Request;
 use Illuminate\Support\Facades\Input;
@@ -36,7 +39,6 @@ class PagesController extends BaseController {
         $filter = DataFilter::source($this->page);
         $filter->add('title','Title', 'text');
         $filter->submit('Search');
-        $filter->reset('Reset');
         
         $grid = DataGrid::source($this->page);
         
@@ -48,7 +50,9 @@ class PagesController extends BaseController {
         $grid->orderBy('id','desc');
         $grid->paginate(20);
             
-        return  View::make('pages.index', compact('filter', 'grid'));
+        $this->layout =  View::make('pages.index', compact('filter', 'grid'));
+        $this->layout->title = trans('pages.titles.list');
+        $this->layout->breadcrumb = Config::get('breadcrumbs.pages');
 	}
 
 	/**
@@ -70,14 +74,16 @@ class PagesController extends BaseController {
         $form->submit('Save');
         
         if (Request::isMethod('get')){
-        	return View::make('pages.form', compact('form'));
+        	$this->layout = View::make('pages.form', compact('form'));
+        	$this->layout->title = trans('pages.titles.new');
+        	$this->layout->breadcrumb = Config::get('breadcrumbs.pages');
         } else {
         	$form->saved(function() use ($form)
 	        {        	
 	        	$form->message("Saved");
 	        });
-	        return Redirect::route('pages.index');
-        }        
+	        return Redirect::route('indexPages');
+        }
 	}
 
 	/**
@@ -91,7 +97,7 @@ class PagesController extends BaseController {
 		//DELETE
 		if($id > 0) {
 			$this->page->find($id)->delete();
-			return Redirect::route('pages.index');
+			return Redirect::route('indexPages');
 		}//if
 		//EDIT
         $id = Input::get('modify');
@@ -107,13 +113,15 @@ class PagesController extends BaseController {
         $form->submit('Save');
 
         if (Request::isMethod('get')){
-        	return View::make('pages.form', compact('form'));
+        	$this->layout = View::make('pages.form', compact('form'));
+        	$this->layout->title = trans('pages.titles.new');
+        	$this->layout->breadcrumb = Config::get('breadcrumbs.pages');
         } else {
         	$form->saved(function() use ($form)
 	        {        	
 	        	$form->message("Saved");
 	        });
-	        return Redirect::route('pages.index');
+	        return Redirect::route('indexPages');
         }
 	}
 }

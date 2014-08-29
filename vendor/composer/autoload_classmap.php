@@ -1705,6 +1705,7 @@ return array(
     'Test' => $baseDir . '/app/models/Test.php',
     'TestCase' => $baseDir . '/app/tests/TestCase.php',
     'TestsController' => $baseDir . '/app/controllers/TestsController.php',
+    'TestsTableSeeder' => $baseDir . '/app/database/seeds/TestsTableSeeder.php',
     'Thomaswelton\\LaravelGravatar\\Facades\\Gravatar' => $vendorDir . '/thomaswelton/laravel-gravatar/src/Thomaswelton/LaravelGravatar/Facades/Gravatar.php',
     'Thomaswelton\\LaravelGravatar\\Gravatar' => $vendorDir . '/thomaswelton/laravel-gravatar/src/Thomaswelton/LaravelGravatar/Gravatar.php',
     'Thomaswelton\\LaravelGravatar\\LaravelGravatarServiceProvider' => $vendorDir . '/thomaswelton/laravel-gravatar/src/Thomaswelton/LaravelGravatar/LaravelGravatarServiceProvider.php',

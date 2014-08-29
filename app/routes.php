@@ -15,8 +15,29 @@ Route::get('/', function()
 {
 	return View::make('hello');
 });
-Route::resource('pages', 'PagesController', array('only' => array('index','create')));
-Route::post('pages/create', 'PagesController@create');
-Route::get('pages/edit', 'PagesController@edit');
-Route::post('pages/edit', 'PagesController@edit');
+Route::get('dashboard/pages', array(
+    'as' => 'indexPages',
+    'before' => 'basicAuth|hasPermissions:page.index',
+    'uses' => 'PagesController@index')
+);
+Route::get('dashboard/pages/create', array(
+    'as' => 'createPages',
+    'before' => 'basicAuth|hasPermissions:page.create',
+    'uses' => 'PagesController@create')
+);
+Route::post('dashboard/pages/create', array(
+    'as' => 'createPages',
+    'before' => 'basicAuth|hasPermissions:page.create',
+    'uses' => 'PagesController@create')
+);
+Route::get('dashboard/pages/edit', array(
+    'as' => 'editPages',
+    'before' => 'basicAuth|hasPermissions:page.edit',
+    'uses' => 'PagesController@edit')
+);
+Route::post('dashboard/pages/edit', array(
+    'as' => 'editPages',
+    'before' => 'basicAuth|hasPermissions:page.edit',
+    'uses' => 'PagesController@edit')
+);
 //Route::get('pages/edit?delete={id}', array('as' => 'delete','uses' => 'PagesController@destroy'));

@@ -1,17 +1,16 @@
 
 {{ $form_begin }}
 
-
 @include('rapyd::toolbar', array('label'=>$label, 'buttons_right'=>$buttons['TR']))
 
-<div class="form-horizontal">
+<div class="">
 
 @if ($message != '')
-
 
     <div class="alert alert-success">{{ $message}}</div>
 
 @elseif (isset($groups))
+
     @foreach ($groups as $group)
 
         @if ($group["group_name"] != "ungrouped")
@@ -26,7 +25,6 @@
                   {{ $field["field"] }}
                 @endforeach
             @else
-
 
                 <div class="form-group">
                 @if (isset($field_series["fields"]))
@@ -45,8 +43,8 @@
                                         <div class="col-sm-10 col-sm-offset-2">
                                             {{ $field["field"] }}
                                     @else
-                                        <label for="{{ $field["id"] }}" class="col-sm-2 control-label">{{ $field["label"].$field["star"] }}</label>
-                                        <div class="col-sm-10" id="div_{{ $field['id'] }}">
+                                        <label for="{{ $field["id"] }}" class="control-label">{{ $field["label"].$field["star"] }}</label>
+                                        <div class="" id="div_{{ $field['id'] }}">
                                         {{ $field["field"] }}
 
                                          @if($errors->has($field["id"]))
@@ -90,7 +88,6 @@
 </div>
 
 @include('rapyd::toolbar', array('buttons_left'=>$buttons['BL'], 'buttons_right'=>$buttons['BR'] ))
-
 
 {{ $form_end }}
 

@@ -288,7 +288,7 @@ class DataForm extends Widget
         $data = get_object_vars($this);
         $data['buttons'] = $this->button_container;
 
-        $form_attr = array('url' => $this->process_url, 'class' => "form-horizontal", 'role' => "form", 'method' => $this->method);
+        $form_attr = array('url' => $this->process_url, 'class' => "", 'role' => "form", 'method' => $this->method);
         // See if we need a multipart form
         foreach ($this->fields as $field_obj) {
             if ($field_obj->type == 'file') {

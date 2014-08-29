@@ -14,7 +14,7 @@ class DataGrid extends DataSet
     public $columns = array();
     public $rows = array();
     public $output = "";
-    public $attributes = array("class" => "table");
+    public $attributes = array("class" => "table table-hover");
     protected $row_callable = false;
 
 
