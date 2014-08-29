@@ -47,7 +47,7 @@ class PagesController extends BaseController {
         $grid->add('slug','Slug',true);
 
         $grid->edit('pages/edit', 'Action','modify|delete')->style("width:100px");
-        $grid->orderBy('id','desc');
+        $grid->orderBy('id','asc');
         $grid->paginate(20);
             
         $this->layout =  View::make('pages.index', compact('filter', 'grid'));
@@ -68,7 +68,7 @@ class PagesController extends BaseController {
         $form->add('slug','Slug', 'text')->rule('required|min:3');
         $form->add('content','Content', 'redactor');
         $form->add('keyword','Keyword', 'text');
-        $form->add('desc','Description', 'redactor');
+        $form->add('desc','Description', 'text');
         $form->add('keyword','Keyword', 'text');
         $form->add('status','Status','checkbox');
         $form->submit('Save');
