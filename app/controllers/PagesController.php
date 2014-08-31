@@ -43,7 +43,7 @@ class PagesController extends BaseController {
         $grid = DataGrid::source($this->page);
         
         $grid->add('id','ID', true)->style("width:100px");
-        $grid->add('title','Title',true);
+        $grid->add('name','Name',true);
         $grid->add('slug','Slug',true);
 
         $grid->edit('pages/edit', 'Action','modify|delete')->style("width:100px");
@@ -64,12 +64,12 @@ class PagesController extends BaseController {
 	{
         $form = DataForm::source($this->page);
 
-        $form->add('title','Title', 'text')->rule('required|min:3');
+        $form->add('name','Name', 'text')->rule('required|min:3');
         $form->add('slug','Slug', 'text')->rule('required|min:3');
         $form->add('content','Content', 'redactor');
-        $form->add('keyword','Keyword', 'text');
-        $form->add('desc','Description', 'text');
-        $form->add('keyword','Keyword', 'text');
+        $form->add('title','Title Tag', 'text');
+        $form->add('keyword','Meta Keyword', 'text');
+        $form->add('desc','Meta Description', 'text');
         $form->add('status','Status','checkbox');
         $form->submit('Save');
         
@@ -103,12 +103,12 @@ class PagesController extends BaseController {
         $id = Input::get('modify');
 		$form = DataForm::source(Page::find($id));
 
-        $form->add('title','Title', 'text')->rule('required|min:3');
+        $form->add('name','Name', 'text')->rule('required|min:3');
         $form->add('slug','Slug', 'text')->rule('required|min:3');
         $form->add('content','Content', 'redactor');
-        $form->add('keyword','Keyword', 'text');
-        $form->add('desc','Description', 'redactor');
-        $form->add('keyword','Keyword', 'text');
+        $form->add('title','Title Tag', 'text');
+        $form->add('keyword','Meta Keyword', 'text');
+        $form->add('desc','Meta Description', 'text');
         $form->add('status','Status','checkbox');
         $form->submit('Save');
 
