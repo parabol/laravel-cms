@@ -1,0 +1,7 @@
+{
+	"name": "frontend",
+	"enabled":  true,
+	"provider": [
+		"App\\Modules\\Frontend\\FrontendServiceProvider"
+	],
+}

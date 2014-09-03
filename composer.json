@@ -9,7 +9,8 @@
 		"mrjuliuss/syntara": "1.2.*",
 		"jakubsacha/adminlte": "dev-master",
         "zofe/rapyd": "1.3.*",
-        "dollar/generators": "dev-master"
+        "dollar/generators": "dev-master",
+        "creolab/laravel-modules": "dev-master"
 	},
 	"autoload": {
 		"classmap": [
@@ -18,7 +19,8 @@
 			"app/models",
 			"app/database/migrations",
 			"app/database/seeds",
-			"app/tests/TestCase.php"
+			"app/tests/TestCase.php",
+			"app/modules"
 		]
 	},
 	"scripts": {

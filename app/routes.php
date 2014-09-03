@@ -11,33 +11,39 @@
 |
 */
 
-Route::get('/', function()
-{
-	return View::make('hello');
-});
+Route::get('/', array(
+    'as' => 'home',
+    'uses' => 'App\Modules\Frontend\Controllers\HomeController@showWelcome')
+);
 Route::get('dashboard/pages', array(
     'as' => 'indexPages',
     'before' => 'basicAuth|hasPermissions:page.index',
-    'uses' => 'PagesController@index')
+    'uses' => 'App\Modules\Backend\Controllers\PagesController@index')
 );
 Route::get('dashboard/pages/create', array(
     'as' => 'createPages',
     'before' => 'basicAuth|hasPermissions:page.create',
-    'uses' => 'PagesController@create')
+    'uses' => 'App\Modules\Backend\Controllers\PagesController@create')
 );
 Route::post('dashboard/pages/create', array(
     'as' => 'createPages',
     'before' => 'basicAuth|hasPermissions:page.create',
-    'uses' => 'PagesController@create')
+    'uses' => 'App\Modules\Backend\Controllers\PagesController@create')
 );
 Route::get('dashboard/pages/edit', array(
     'as' => 'editPages',
     'before' => 'basicAuth|hasPermissions:page.edit',
-    'uses' => 'PagesController@edit')
+    'uses' => 'App\Modules\Backend\Controllers\PagesController@edit')
 );
 Route::post('dashboard/pages/edit', array(
     'as' => 'editPages',
     'before' => 'basicAuth|hasPermissions:page.edit',
-    'uses' => 'PagesController@edit')
+    'uses' => 'App\Modules\Backend\Controllers\PagesController@edit')
 );
 //Route::get('pages/edit?delete={id}', array('as' => 'delete','uses' => 'PagesController@destroy'));
+
+// Custom 404 page
+App::missing(function($exception)
+{
+    return Response::view('content::404', array(), 404);
+});

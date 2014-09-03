@@ -1,0 +1,7 @@
+{
+	"name": "backend",
+	"enabled":  true,
+	"provider": [
+		"App\\Modules\\Backend\\BackendServiceProvider"
+	],
+}

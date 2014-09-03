@@ -1,4 +1,4 @@
-<?php
+<?php namespace App\Modules\Backend\Controllers;
 
 use MrJuliuss\Syntara\Controllers\BaseController;
 
@@ -7,6 +7,7 @@ use Illuminate\Support\Facades\Request;
 use Illuminate\Support\Facades\Input;
 use Illuminate\Support\Facades\Schema;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Config;
 
 use Zofe\Rapyd\Facades\DataSet;
 use Zofe\Rapyd\Facades\DataGrid;
@@ -14,6 +15,8 @@ use Zofe\Rapyd\Facades\DataForm;
 use Zofe\Rapyd\Facades\DataEdit;
 use Zofe\Rapyd\Facades\DataFilter;
 use Zofe\Rapyd\Facades\Documenter;
+
+use Page;
 
 class PagesController extends BaseController {
 
@@ -27,6 +30,7 @@ class PagesController extends BaseController {
 	public function __construct(Page $page)
 	{
 		$this->page = $page;
+		View::addNamespace('backend', __DIR__.'/../views');
 	}
 
 	/**
@@ -50,7 +54,7 @@ class PagesController extends BaseController {
         $grid->orderBy('id','asc');
         $grid->paginate(20);
             
-        $this->layout =  View::make('pages.index', compact('filter', 'grid'));
+        $this->layout =  View::make('backend::pages.index', compact('filter', 'grid'));
         $this->layout->title = trans('pages.titles.list');
         $this->layout->breadcrumb = Config::get('breadcrumbs.pages');
 	}
@@ -74,7 +78,7 @@ class PagesController extends BaseController {
         $form->submit('Save');
         
         if (Request::isMethod('get')){
-        	$this->layout = View::make('pages.form', compact('form'));
+        	$this->layout = View::make('backend::pages.form', compact('form'));
         	$this->layout->title = trans('pages.titles.new');
         	$this->layout->breadcrumb = Config::get('breadcrumbs.pages');
         } else {
@@ -113,7 +117,7 @@ class PagesController extends BaseController {
         $form->submit('Save');
 
         if (Request::isMethod('get')){
-        	$this->layout = View::make('pages.form', compact('form'));
+        	$this->layout = View::make('backend::pages.form', compact('form'));
         	$this->layout->title = trans('pages.titles.new');
         	$this->layout->breadcrumb = Config::get('breadcrumbs.pages');
         } else {

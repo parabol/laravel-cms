@@ -9,12 +9,6 @@ class BaseController extends Controller {
 	 */
 	protected function setupLayout()
 	{
-		if ( ! is_null($this->layout))
-		{
-			$this->layout = View::make(Config::get('syntara::views.master'));
-	        $this->layout->title = 'CMS - Dashboard';
-	        $this->layout->breadcrumb = array();
-		}
 	}
 
 }

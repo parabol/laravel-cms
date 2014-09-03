@@ -1,6 +1,9 @@
-<?php
+<?php namespace App\Modules\Frontend\Controllers;
 
-class HomeController extends BaseController {
+use App\Controllers\BaseController;
+use Illuminate\Support\Facades\View;
+
+class HomeController extends \BaseController {
 
 	/*
 	|--------------------------------------------------------------------------
@@ -15,9 +18,14 @@ class HomeController extends BaseController {
 	|
 	*/
 
+	public function __construct()
+	{
+		View::addNamespace('frontend', __DIR__.'/../views');
+	}
+
 	public function showWelcome()
 	{
-		return View::make('hello');
+		return View::make('frontend::hello');
 	}
 
 }
