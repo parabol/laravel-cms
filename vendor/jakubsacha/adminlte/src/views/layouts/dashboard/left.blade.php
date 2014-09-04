@@ -3,11 +3,6 @@
     <section class="sidebar">
         <!-- sidebar menu: : style can be found in sidebar.less -->
         <ul class="sidebar-menu">
-            <li class="active">
-                <a href="{{ URL::route('indexDashboard') }}">
-                    <i class="fa fa-dashboard"></i> <span>{{trans("syntara::breadcrumbs.dashboard")}}</span>
-                </a>
-            </li>
             {{ (!empty($navPages)) ? $navPages : '' }}
             @if (Sentry::check())
                 @if($currentUser->hasAccess('view-users-list') || $currentUser->hasAccess('groups-management'))
