@@ -128,6 +128,7 @@ return array(
         'Dollar\Generators\GeneratorsServiceProvider',
         'Creolab\LaravelModules\ServiceProvider',
         'Barryvdh\Debugbar\ServiceProvider',
+        'GrahamCampbell\HTMLMin\HTMLMinServiceProvider',
 	),
 
 	/*
@@ -195,6 +196,7 @@ return array(
 		'Validator'       => 'Illuminate\Support\Facades\Validator',
 		'View'            => 'Illuminate\Support\Facades\View',
 		'Sentry'          => 'Cartalyst\Sentry\Facades\Laravel\Sentry',
+		'HTMLMin' 		  => 'GrahamCampbell\HTMLMin\Facades\HTMLMin'
 	),
 
 );
