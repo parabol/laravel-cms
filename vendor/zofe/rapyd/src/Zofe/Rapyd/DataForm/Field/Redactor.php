@@ -1,7 +1,9 @@
 <?php namespace Zofe\Rapyd\DataForm\Field;
 
 use Illuminate\Support\Facades\Form;
+use Illuminate\Support\Facades\URL;
 use Zofe\Rapyd\Rapyd;
+
 class Redactor extends Field {
 
   public $type = "text";
@@ -31,15 +33,21 @@ class Redactor extends Field {
       case "create":
       case "modify":
 
-
-        Rapyd::js('packages/zofe/rapyd/assets/redactor/jquery.browser.min.js');
-        Rapyd::js('packages/zofe/rapyd/assets/redactor/redactor.min.js');
-        Rapyd::css('packages/zofe/rapyd/assets/redactor/css/redactor.css');
+        Rapyd::js('packages/zofe/rapyd/assets/tinymce/tinymce.min.js');
         $output  = Form::textarea($this->db_name, $this->value, $this->attributes);
         $output .= Rapyd::script("
-        $(document).ready(function() {
-                 $('#".$this->name."').redactor();
-        });");
+          tinymce.init({
+            selector: 'textarea#".$this->name."',
+            plugins: [
+                 'advlist autolink link image lists charmap print preview hr anchor pagebreak',
+                 'searchreplace wordcount visualblocks visualchars code fullscreen insertdatetime media nonbreaking',
+                 'save table contextmenu directionality emoticons template paste textcolor responsivefilemanager'
+            ],
+            toolbar: 'insertfile undo redo | styleselect | bold italic | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | responsivefilemanager | print preview media fullpage | forecolor backcolor emoticons', 
+            image_advtab: true ,
+            external_filemanager_path:'" . URL::to('/') . "/packages/filemanager/',
+            filemanager_title:'Upload',
+          });");
 
         break;
 
