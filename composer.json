@@ -10,7 +10,8 @@
 		"jakubsacha/adminlte": "dev-master",
         "zofe/rapyd": "1.3.*",
         "dollar/generators": "dev-master",
-        "creolab/laravel-modules": "dev-master"
+        "creolab/laravel-modules": "dev-master",
+        "barryvdh/laravel-debugbar": "1.*"
 	},
 	"autoload": {
 		"classmap": [

@@ -126,7 +126,8 @@ return array(
 		'Jakubsacha\Adminlte\AdminlteServiceProvider',
         'Zofe\Rapyd\RapydServiceProvider',
         'Dollar\Generators\GeneratorsServiceProvider',
-        'Creolab\LaravelModules\ServiceProvider'
+        'Creolab\LaravelModules\ServiceProvider',
+        'Barryvdh\Debugbar\ServiceProvider',
 	),
 
 	/*
