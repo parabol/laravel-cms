@@ -12,7 +12,6 @@ class DatabaseSeeder extends Seeder {
 		Eloquent::unguard();
 
 		$this->call('PagesTableSeeder');
-		$this->call('TestsTableSeeder');
 		$this->call('GroupsTableSeeder');
 		$this->call('PermissionsTableSeeder');
 		$this->call('ThrottleTableSeeder');
