@@ -7,6 +7,8 @@ $baseDir = dirname($vendorDir);
 
 return array(
     'Monolog\\' => array($vendorDir . '/monolog/monolog/src/Monolog'),
+    'League\\Flysystem\\' => array($vendorDir . '/league/flysystem/src'),
     'Creolab\\LaravelModules\\' => array($vendorDir . '/creolab/laravel-modules/src'),
+    'BigName\\BackupManager\\' => array($vendorDir . '/heybigname/backup-manager/src'),
     'Barryvdh\\Debugbar\\' => array($vendorDir . '/barryvdh/laravel-debugbar/src'),
 );

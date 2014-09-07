@@ -129,7 +129,11 @@ return array(
         'Creolab\LaravelModules\ServiceProvider',
         'Barryvdh\Debugbar\ServiceProvider',
         'Chumper\Datatable\DatatableServiceProvider',
-        'Fitztrev\LaravelHtmlMinify\LaravelHtmlMinifyServiceProvider'
+        'Fitztrev\LaravelHtmlMinify\LaravelHtmlMinifyServiceProvider',
+        'BigName\BackupManager\Integrations\Laravel\BackupManagerServiceProvider',
+        'Way\Generators\GeneratorsServiceProvider',
+        'Xethron\MigrationsGenerator\MigrationsGeneratorServiceProvider',
+        'Orangehill\Iseed\IseedServiceProvider'
 	),
 
 	/*
