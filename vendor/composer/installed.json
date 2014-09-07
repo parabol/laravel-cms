@@ -2268,18 +2268,116 @@
         "homepage": "http://symfony.com"
     },
     {
-        "name": "barryvdh/laravel-debugbar",
-        "version": "v1.7.2",
-        "version_normalized": "1.7.2.0",
+        "name": "imade/datatable-model",
+        "version": "dev-master",
+        "version_normalized": "9999999-dev",
         "source": {
             "type": "git",
-            "url": "https://github.com/barryvdh/laravel-debugbar.git",
-            "reference": "c092d6a79be56280935a57170cce1e626f5e8105"
+            "url": "https://github.com/imade-nl/Datatable-Model.git",
+            "reference": "21f96240ffa3c36d200ee739edf0ecef60657684"
         },
         "dist": {
             "type": "zip",
-            "url": "https://api.github.com/repos/barryvdh/laravel-debugbar/zipball/c092d6a79be56280935a57170cce1e626f5e8105",
-            "reference": "c092d6a79be56280935a57170cce1e626f5e8105",
+            "url": "https://api.github.com/repos/imade-nl/Datatable-Model/zipball/21f96240ffa3c36d200ee739edf0ecef60657684",
+            "reference": "21f96240ffa3c36d200ee739edf0ecef60657684",
+            "shasum": ""
+        },
+        "require": {
+            "php": ">=5.3.0"
+        },
+        "time": "2014-08-07 16:13:26",
+        "type": "library",
+        "installation-source": "dist",
+        "autoload": {
+            "psr-0": {
+                "Imade\\Datatable\\": "src/"
+            }
+        },
+        "notification-url": "https://packagist.org/downloads/",
+        "license": [
+            "MIT"
+        ],
+        "authors": [
+            {
+                "name": "Imade",
+                "email": "pieter@imade.nl"
+            }
+        ],
+        "description": "A dedicated class (model) to configure Chumper's Datatable package for Laravel (https://github.com/Chumper/Datatable) to keep your controllers as clean as possible.",
+        "keywords": [
+            "datatable",
+            "laravel",
+            "model"
+        ]
+    },
+    {
+        "name": "chumper/datatable",
+        "version": "2.3",
+        "version_normalized": "2.3.0.0",
+        "source": {
+            "type": "git",
+            "url": "https://github.com/Chumper/Datatable.git",
+            "reference": "cff842783f3f4af60c2be295435b2bd812510ef5"
+        },
+        "dist": {
+            "type": "zip",
+            "url": "https://api.github.com/repos/Chumper/Datatable/zipball/cff842783f3f4af60c2be295435b2bd812510ef5",
+            "reference": "cff842783f3f4af60c2be295435b2bd812510ef5",
+            "shasum": ""
+        },
+        "require": {
+            "illuminate/config": "4.*",
+            "illuminate/support": "4.*",
+            "illuminate/view": "4.*",
+            "php": ">=5.3.0"
+        },
+        "require-dev": {
+            "mockery/mockery": "dev-master",
+            "orchestra/testbench": "2.1.*",
+            "phpunit/phpunit": "3.7.*"
+        },
+        "time": "2014-05-11 14:53:49",
+        "type": "library",
+        "installation-source": "dist",
+        "autoload": {
+            "psr-0": {
+                "Chumper\\Datatable": "src/"
+            }
+        },
+        "notification-url": "https://packagist.org/downloads/",
+        "license": [
+            "MIT"
+        ],
+        "authors": [
+            {
+                "name": "Nils Plaschke",
+                "email": "github@nilsplaschke.de",
+                "homepage": "http://nilsplaschke.de",
+                "role": "Developer"
+            }
+        ],
+        "description": "This is a laravel 4 package for the server and client side of datatablaes at http://datatables.net/",
+        "homepage": "http://github.com/Chumper/datatable",
+        "keywords": [
+            "ajax",
+            "datatables",
+            "jquery",
+            "laravel"
+        ]
+    },
+    {
+        "name": "barryvdh/laravel-debugbar",
+        "version": "v1.7.3",
+        "version_normalized": "1.7.3.0",
+        "source": {
+            "type": "git",
+            "url": "https://github.com/barryvdh/laravel-debugbar.git",
+            "reference": "ab1afe09d35d59fb81d470e21c91a21b846e9c32"
+        },
+        "dist": {
+            "type": "zip",
+            "url": "https://api.github.com/repos/barryvdh/laravel-debugbar/zipball/ab1afe09d35d59fb81d470e21c91a21b846e9c32",
+            "reference": "ab1afe09d35d59fb81d470e21c91a21b846e9c32",
             "shasum": ""
         },
         "require": {
@@ -2288,7 +2386,7 @@
             "php": ">=5.3.0",
             "symfony/finder": "~2.3"
         },
-        "time": "2014-09-04 12:50:52",
+        "time": "2014-09-05 15:08:45",
         "type": "library",
         "extra": {
             "branch-alias": {
@@ -2299,7 +2397,10 @@
         "autoload": {
             "psr-4": {
                 "Barryvdh\\Debugbar\\": "src/"
-            }
+            },
+            "files": [
+                "src/helpers.php"
+            ]
         },
         "notification-url": "https://packagist.org/downloads/",
         "license": [
@@ -2321,109 +2422,58 @@
         ]
     },
     {
-        "name": "mrclay/minify",
-        "version": "2.2.0",
-        "version_normalized": "2.2.0.0",
+        "name": "fitztrev/laravel-html-minify",
+        "version": "1.0.3",
+        "version_normalized": "1.0.3.0",
         "source": {
             "type": "git",
-            "url": "https://github.com/mrclay/minify.git",
-            "reference": "d245bca4987dec197d1e6d7dc117614b60ff7494"
+            "url": "https://github.com/fitztrev/laravel-html-minify.git",
+            "reference": "8005fc4a8489ca0fc44dbf2514e35148eb3a8693"
         },
         "dist": {
             "type": "zip",
-            "url": "https://api.github.com/repos/mrclay/minify/zipball/d245bca4987dec197d1e6d7dc117614b60ff7494",
-            "reference": "d245bca4987dec197d1e6d7dc117614b60ff7494",
+            "url": "https://api.github.com/repos/fitztrev/laravel-html-minify/zipball/8005fc4a8489ca0fc44dbf2514e35148eb3a8693",
+            "reference": "8005fc4a8489ca0fc44dbf2514e35148eb3a8693",
             "shasum": ""
         },
         "require": {
-            "ext-pcre": "*",
-            "php": ">=5.2.1"
-        },
-        "time": "2014-03-12 12:54:23",
-        "type": "library",
-        "installation-source": "dist",
-        "autoload": {
-            "classmap": [
-                "min/lib/"
-            ]
-        },
-        "notification-url": "https://packagist.org/downloads/",
-        "license": [
-            "BSD-3-Clause"
-        ],
-        "authors": [
-            {
-                "name": "Steve Clay",
-                "email": "steve@mrclay.org",
-                "homepage": "http://www.mrclay.org/",
-                "role": "Developer"
-            }
-        ],
-        "description": "Minify is a PHP5 app that helps you follow several rules for client-side performance. It combines multiple CSS or Javascript files, removes unnecessary whitespace and comments, and serves them with gzip encoding and optimal client-side cache headers",
-        "homepage": "http://code.google.com/p/minify/"
-    },
-    {
-        "name": "graham-campbell/htmlmin",
-        "version": "v2.1.2",
-        "version_normalized": "2.1.2.0",
-        "source": {
-            "type": "git",
-            "url": "https://github.com/GrahamCampbell/Laravel-HTMLMin.git",
-            "reference": "954e0c240afd8be10bb44392b9d1592c8ef253ed"
-        },
-        "dist": {
-            "type": "zip",
-            "url": "https://api.github.com/repos/GrahamCampbell/Laravel-HTMLMin/zipball/954e0c240afd8be10bb44392b9d1592c8ef253ed",
-            "reference": "954e0c240afd8be10bb44392b9d1592c8ef253ed",
-            "shasum": ""
-        },
-        "require": {
-            "illuminate/filesystem": "~4.2",
-            "illuminate/http": "~4.2",
-            "illuminate/routing": "~4.2",
-            "illuminate/support": "~4.2",
-            "illuminate/view": "~4.2",
-            "mrclay/minify": "~2.2",
-            "php": ">=5.4.7"
+            "illuminate/view": "4.x"
         },
         "require-dev": {
-            "graham-campbell/testbench": "~1.0"
+            "mockery/mockery": "dev-master",
+            "phpunit/php-code-coverage": ">=1.2.10,<1.3.0",
+            "phpunit/phpunit": "3.7.*"
         },
-        "time": "2014-08-12 14:48:10",
+        "time": "2014-07-14 18:21:35",
         "type": "library",
-        "extra": {
-            "branch-alias": {
-                "dev-master": "2.1-dev"
-            }
-        },
         "installation-source": "dist",
         "autoload": {
-            "psr-4": {
-                "GrahamCampbell\\HTMLMin\\": "src/"
+            "psr-0": {
+                "Fitztrev\\LaravelHtmlMinify": "src/"
             }
         },
         "notification-url": "https://packagist.org/downloads/",
         "license": [
-            "Apache-2.0"
+            "MIT"
         ],
         "authors": [
             {
-                "name": "Graham Campbell",
-                "email": "graham@mineuk.com"
+                "name": "Trevor Fitzgerald",
+                "email": "fitztrev@gmail.com"
             }
         ],
-        "description": "HTMLMin Is A Simple HTML Minifier For Laravel 4.2+",
+        "description": "Minifies the HTML output of Laravel 4 applications",
+        "homepage": "https://github.com/fitztrev/laravel-html-minify",
         "keywords": [
-            "Graham Campbell",
-            "GrahamCampbell",
-            "Laravel HTMLMin",
-            "Laravel-HTMLMin",
-            "framework",
+            "L4",
+            "blade",
+            "compress",
             "html",
-            "html minifier",
-            "htmlmin",
             "laravel",
-            "minifier"
+            "minifier",
+            "minify",
+            "optimization",
+            "performance"
         ]
     }
 ]

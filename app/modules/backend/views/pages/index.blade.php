@@ -2,17 +2,7 @@
 
 @section('content')
 <div class="row">
-    <div class="col-lg-2">
-        <div class="box box-warning">
-            <div class="box-header">
-                <h3 class="box-title">{{ trans('syntara::all.search') }}</h3>
-            </div>
-            <div class="box-body">
-                {{ $filter }}
-            </div>
-        </div>
-    </div>
-    <div class="col-lg-10">
+    <div class="col-lg-12">
         <div class="box">
             <div class="box-header">
                 <h3 class="box-title">{{ trans('pages.all') }}</h3>
@@ -29,11 +19,12 @@
                 </div>
             </div>
             <div class="box-body  ajax-content no-padding">
-                {{ $grid }}
+                {{ Datatable::table()->addColumn('#','Name','Action')->setUrl(route('getPagesDatatable'))->render() }}
             </div>
         </div>
     </div>
 </div>
-
-
+<link href="{{ asset('packages/jakubsacha/adminlte/AdminLTE/css/datatables/dataTables.bootstrap.css') }}" rel="stylesheet" type="text/css" />
+<script src="{{ asset('packages/jakubsacha/adminlte/AdminLTE/js/plugins/datatables/jquery.dataTables.js') }}"></script>
+<script src="{{ asset('packages/jakubsacha/adminlte/AdminLTE/js/plugins/datatables/dataTables.bootstrap.js') }}"></script>
 @stop

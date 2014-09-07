@@ -18,8 +18,20 @@ use Zofe\Rapyd\Facades\DataFilter;
 use Zofe\Rapyd\Facades\Documenter;
 
 use Page;
+use PageDatatable;
+use Datatable;
 
 class PagesController extends BaseController {
+
+	/**
+    * Setup the layout used by the controller.
+    *
+    * @return void
+    */
+    protected function setupLayout()
+    {
+        
+    }
 
 	/**
 	 * Page Repository
@@ -41,23 +53,30 @@ class PagesController extends BaseController {
 	 */
 	public function index()
 	{
-        $filter = DataFilter::source($this->page);
-        $filter->add('title','Title', 'text');
-        $filter->submit('Search');
-        
-        $grid = DataGrid::source($this->page);
-        
-        $grid->add('id','ID', true)->style("width:100px");
-        $grid->add('name','Name',true);
-        $grid->add('slug','Slug',true);
-
-        $grid->edit('pages/edit', 'Action','modify|delete')->style("width:100px");
-        $grid->orderBy('id','asc');
-        $grid->paginate(20);
-            
-        $this->layout =  View::make('backend::pages.index', compact('filter', 'grid'));
+        $this->layout = View::make('backend::pages.index');
         $this->layout->title = trans('pages.titles.list');
         $this->layout->breadcrumb = Config::get('breadcrumbs.pages');
+	}
+
+	/**
+	 * Display a listing of the resource.
+	 *
+	 * @return Response
+	 */
+	public function getDatatable(){
+		if(Datatable::shouldHandle()){
+			return Datatable::collection(Page::all(array('id','name')))
+			->showColumns('id', 'name')
+			->addColumn('Actions', function($page)
+	        {
+	            $crudLinks = link_to(Config::get('syntara::config.uri').'/pages/edit?modify=' . $page->id, '', $attributes = array('class' => 'fa fa-edit', 'alt' => 'Edit Page', 'title' => 'Edit ' .$page->name)). '&nbsp;';
+	            $crudLinks .= link_to(Config::get('syntara::config.uri').'pages/edit?delete=' . $page->id, '', $attributes = array('class' => 'fa fa-times', 'alt' => 'Delete Page', 'title' => 'Delete ' .$page->name)). '&nbsp;';
+	            return $crudLinks;
+	        })
+			->searchColumns('name')
+			->orderColumns('id','name')
+			->make();
+        }
 	}
 
 	/**

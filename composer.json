@@ -10,7 +10,9 @@
 		"jakubsacha/adminlte": "dev-master",
         "zofe/rapyd": "1.3.*",
         "creolab/laravel-modules": "dev-master",
-        "graham-campbell/htmlmin": "~2.0"
+        "chumper/datatable": "2.*",
+        "imade/datatable-model": "dev-master",
+        "fitztrev/laravel-html-minify": "1.*"
 	},
 	"require-dev": {
         "dollar/generators": "dev-master",

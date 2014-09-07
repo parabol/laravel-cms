@@ -16,7 +16,8 @@ class BaseController extends Controller
     protected function setupLayout()
     {
         $this->layout = View::make(Config::get('syntara::views.master'));
-        $this->layout->title = 'Syntara - Dashboard';
+        $this->layout->title = 'VietSol CMS';
         $this->layout->breadcrumb = array();
+        View::share('siteName', 'VietSol CMS');
     }
 }

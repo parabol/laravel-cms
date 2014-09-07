@@ -20,6 +20,11 @@ Route::get('dashboard/pages', array(
     'before' => 'basicAuth|hasPermissions:page.index',
     'uses' => 'App\Modules\Backend\Controllers\PagesController@index')
 );
+Route::get('dashboard/pages/getDatatable', array(
+    'as' => 'getPagesDatatable',
+    'before' => 'basicAuth|hasPermissions:page.datatable',
+    'uses' => 'App\Modules\Backend\Controllers\PagesController@getDatatable')
+);
 Route::get('dashboard/pages/create', array(
     'as' => 'createPages',
     'before' => 'basicAuth|hasPermissions:page.create',
