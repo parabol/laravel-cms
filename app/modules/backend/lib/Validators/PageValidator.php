@@ -1,4 +1,6 @@
-<?php namespace Validators;
+<?php namespace App\Modules\Backend\lib\Validators;
+
+use \Validators\Validator;
 
 class PageValidator extends Validator
 {

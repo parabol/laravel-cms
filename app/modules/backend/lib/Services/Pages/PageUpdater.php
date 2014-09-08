@@ -1,8 +1,8 @@
-<?php namespace Services\Pages;
+<?php namespace App\Modules\Backend\lib\Services\Pages;
 
-use Contracts\Repositories\PageRepositoryInterface;
-use Contracts\Notification\UpdaterInterface;
-use Validators\PageValidator;
+use App\Modules\Backend\lib\Contracts\Repositories\PageRepositoryInterface;
+use \Contracts\Notification\UpdaterInterface;
+use App\Modules\Backend\lib\Validators\PageValidator;
 
 class PageUpdater
 {

@@ -2,7 +2,7 @@
 
 use MrJuliuss\Syntara\Controllers\BaseController;
 
-use \Services\PageCreator;
+use App\Modules\Backend\lib\Services\Pages\PageCreator;
 use App\Modules\Backend\lib\Contracts\Repositories\PageRepositoryInterface;
 use \Contracts\Instances\InstanceInterface;
 use \Contracts\Notification\CreatorInterface;
@@ -66,7 +66,7 @@ class PagesController extends BaseController implements CreatorInterface, Update
      */
     public function store()
     {
-        $page_creator = \App::make('Services\Pages\PageCreator');
+        $page_creator = \App::make('App\Modules\Backend\lib\Services\Pages\PageCreator');
 
         return $page_creator->create($this->page, $this, Input::except('_token'));
     }
@@ -134,7 +134,7 @@ class PagesController extends BaseController implements CreatorInterface, Update
      */
     public function update($id)
     {
-        $page_updater = \App::make('Services\Pages\PageUpdater');
+        $page_updater = \App::make('App\Modules\Backend\lib\Services\Pages\PageUpdater');
 
         return $page_updater->update($this->page, $this, $id, Input::except('_method'));
     }
@@ -147,7 +147,7 @@ class PagesController extends BaseController implements CreatorInterface, Update
      */
     public function updateSucceeded(InstanceInterface $instance)
     {
-        return Redirect::route('pages.index', $instance->identity());
+        return Redirect::route('pages.index');
     }
 
     /**
@@ -173,8 +173,8 @@ class PagesController extends BaseController implements CreatorInterface, Update
      */
     public function destroy($id)
     {
-        $page_destroyer = \App::make('Services\Pages\PageDestroyer');
-
+        $page_destroyer = \App::make('App\Modules\Backend\lib\Services\Pages\PageDestroyer');
+        
         return $page_destroyer->destroy($this->page, $this, $id, Input::except('_method'));
     }
 

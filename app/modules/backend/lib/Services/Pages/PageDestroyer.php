@@ -1,8 +1,9 @@
-<?php namespace Services\Pages;
+<?php namespace App\Modules\Backend\lib\Services\Pages;
 
-use Contracts\Repositories\PageRepositoryInterface;
-use Contracts\Notification\DestroyerInterface;
-use Validators\PageValidator;
+use App\Modules\Backend\lib\Contracts\Repositories\PageRepositoryInterface;
+use \Contracts\Notification\DestroyerInterface;
+use App\Modules\Backend\Models\Page;
+use App\Modules\Backend\lib\Validators\PageValidator;
 
 class PageDestroyer
 {
@@ -23,7 +24,7 @@ class PageDestroyer
     {
         $instance = $page->find($identity);
 
-        if ($page->delete($instance)) {
+        if (Page::destroy($identity)) {
 
             return $listener->destroySucceeded($instance);
 
