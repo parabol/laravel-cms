@@ -2,150 +2,201 @@
 
 use MrJuliuss\Syntara\Controllers\BaseController;
 
+use \Services\PageCreator;
+use \Contracts\Repositories\PageRepositoryInterface;
+use \Contracts\Instances\InstanceInterface;
+use \Contracts\Notification\CreatorInterface;
+use \Contracts\Notification\UpdaterInterface;
+use \Contracts\Notification\DestroyerInterface;
+use \Validators\Validator as Validator;
+
 use Illuminate\Support\Facades\View;
-use Illuminate\Support\Facades\Request;
-use Illuminate\Support\Facades\Input;
-use Illuminate\Support\Facades\Schema;
-use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Config;
+use Illuminate\Support\Facades\Input;
 use Illuminate\Support\Facades\Redirect;
 
-use Zofe\Rapyd\Facades\DataSet;
-use Zofe\Rapyd\Facades\DataGrid;
-use Zofe\Rapyd\Facades\DataForm;
-use Zofe\Rapyd\Facades\DataEdit;
-use Zofe\Rapyd\Facades\DataFilter;
-use Zofe\Rapyd\Facades\Documenter;
+use App\Modules\Backend\Models\Page;
 
-use Page;
-use PageDatatable;
-use Datatable;
+class PagesController extends BaseController implements CreatorInterface, UpdaterInterface, DestroyerInterface
+{
 
-class PagesController extends BaseController {
+    /**
+     * Page Repository
+     *
+     * @var PageRepositoryInterface
+     */
+    protected $page;
 
-	/**
-    * Setup the layout used by the controller.
-    *
-    * @return void
-    */
-    protected function setupLayout()
+    public function __construct(PageRepositoryInterface $page)
     {
-        
+        $this->page = $page;
+        View::addNamespace('backend', __DIR__.'/../views');
     }
 
-	/**
-	 * Page Repository
-	 *
-	 * @var Page
-	 */
-	protected $page;
+    /**
+     * Display a listing of the pages.
+     *
+     * @return Response
+     */
+    public function index()
+    {
+        $pages = $this->page->all();
 
-	public function __construct(Page $page)
-	{
-		$this->page = $page;
-		View::addNamespace('backend', __DIR__.'/../views');
-	}
-
-	/**
-	 * Display a listing of the resource.
-	 *
-	 * @return Response
-	 */
-	public function index()
-	{
-        $this->layout = View::make('backend::pages.index');
+        $this->layout = View::make('backend::pages.index', compact('pages'));
         $this->layout->title = trans('pages.titles.list');
         $this->layout->breadcrumb = Config::get('breadcrumbs.pages');
-	}
+    }
 
-	/**
-	 * Display a listing of the resource.
-	 *
-	 * @return Response
-	 */
-	public function getDatatable(){
-		if(Datatable::shouldHandle()){
-			return Datatable::collection(Page::all(array('id','name')))
-			->showColumns('id', 'name')
-			->addColumn('Actions', function($page)
-	        {
-	            $crudLinks = link_to(Config::get('syntara::config.uri').'/pages/edit?modify=' . $page->id, '', $attributes = array('class' => 'fa fa-edit', 'alt' => 'Edit Page', 'title' => 'Edit ' .$page->name)). '&nbsp;';
-	            $crudLinks .= link_to(Config::get('syntara::config.uri').'pages/edit?delete=' . $page->id, '', $attributes = array('class' => 'fa fa-times', 'alt' => 'Delete Page', 'title' => 'Delete ' .$page->name)). '&nbsp;';
-	            return $crudLinks;
-	        })
-			->searchColumns('name')
-			->orderColumns('id','name')
-			->make();
-        }
-	}
+    /**
+     * Show the form for creating a new page.
+     *
+     * @return Response
+     */
+    public function create()
+    {
+        $this->layout = View::make('backend::pages.create');
+        $this->layout->title = trans('pages.titles.list');
+        $this->layout->breadcrumb = Config::get('breadcrumbs.pages');
+    }
 
-	/**
-	 * Show the form for creating a new resource.
-	 *
-	 * @return Response
-	 */
-	public function create()
-	{
-        $form = DataForm::source($this->page);
+    /**
+     * Store a newly created page in storage.
+     *
+     * @return Response
+     */
+    public function store()
+    {
+        $page_creator = \App::make('Services\Pages\PageCreator');
 
-        $form->add('name','Name', 'text')->rule('required|min:3');
-        $form->add('slug','Slug', 'text')->rule('required|min:3');
-        $form->add('content','Content', 'redactor');
-        $form->add('title','Title Tag', 'text');
-        $form->add('keyword','Meta Keyword', 'text');
-        $form->add('desc','Meta Description', 'text');
-        $form->add('status','Status','checkbox');
-        $form->submit('Save');
-        
-        if (Request::isMethod('get')){
-        	$this->layout = View::make('backend::pages.form', compact('form'));
-        	$this->layout->title = trans('pages.titles.new');
-        	$this->layout->breadcrumb = Config::get('breadcrumbs.pages');
-        } else {
-        	$form->saved(function() use ($form)
-	        {        	
-	        	$form->message("Saved");
-	        });
-	        return Redirect::route('indexPages');
-        }
-	}
+        return $page_creator->create($this->page, $this, Input::except('_token'));
+    }
 
-	/**
-	 * Show the form for editing the specified resource.
-	 *
-	 * @return Response
-	 */
-	public function edit()
-	{
-		$id = Input::get('delete');
-		//DELETE
-		if($id > 0) {
-			$this->page->find($id)->delete();
-			return Redirect::route('indexPages');
-		}//if
-		//EDIT
-        $id = Input::get('modify');
-		$form = DataForm::source(Page::find($id));
+    /**
+     * Handle successful page creation
+     *
+     * @param  InstanceInterface $instance
+     * @return Redirect::route
+     */
+    public function creationSucceeded(InstanceInterface $instance)
+    {
+        return Redirect::route('pages.index')->with('message', 'Page was successfully created');
+    }
 
-        $form->add('name','Name', 'text')->rule('required|min:3');
-        $form->add('slug','Slug', 'text')->rule('required|min:3');
-        $form->add('content','Content', 'redactor');
-        $form->add('title','Title Tag', 'text');
-        $form->add('keyword','Meta Keyword', 'text');
-        $form->add('desc','Meta Description', 'text');
-        $form->add('status','Status','checkbox');
-        $form->submit('Save');
+    /**
+     * Handle an error with page creation
+     *
+     * @param  Validator      $validator
+     * @return Redirect::route
+     */
+    public function creationFailed(Validator $validator)
+    {
+        return Redirect::route('pages.create')
+            ->withInput()
+            ->withErrors($validator->errors())
+            ->with('message', 'Oops, there was an error');
+    }
 
-        if (Request::isMethod('get')){
-        	$this->layout = View::make('backend::pages.form', compact('form'));
-        	$this->layout->title = trans('pages.titles.new');
-        	$this->layout->breadcrumb = Config::get('breadcrumbs.pages');
-        } else {
-        	$form->saved(function() use ($form)
-	        {        	
-	        	$form->message("Saved");
-	        });
-	        return Redirect::route('indexPages');
-        }
-	}
+    /**
+     * Display the specified page.
+     *
+     * @param  int      $id
+     * @return Response
+     */
+    public function show($id)
+    {
+        $page = $this->page->find($id);
+
+        $this->layout = View::make('backend::pages.show', compact('page'));
+        $this->layout->title = trans('pages.titles.list');
+        $this->layout->breadcrumb = Config::get('breadcrumbs.pages');
+    }
+
+    /**
+     * Show the form for editing the specified page.
+     *
+     * @param  int      $id
+     * @return Response
+     */
+    public function edit($id)
+    {
+        $page = $this->page->find($id);
+
+        $this->layout = View::make('backend::pages.edit', compact('page'));
+        $this->layout->title = trans('pages.titles.list');
+        $this->layout->breadcrumb = Config::get('breadcrumbs.pages');
+    }
+
+    /**
+     * Update the specified page in storage.
+     *
+     * @param  int      $id
+     * @return Response
+     */
+    public function update($id)
+    {
+        $page_updater = \App::make('Services\Pages\PageUpdater');
+
+        return $page_updater->update($this->page, $this, $id, Input::except('_method'));
+    }
+
+    /**
+     * Handle successful page update
+     *
+     * @param  InstanceInterface $instance
+     * @return Redirect::route
+     */
+    public function updateSucceeded(InstanceInterface $instance)
+    {
+        return Redirect::route('pages.index', $instance->identity());
+    }
+
+    /**
+     * Handle an error with page update
+     *
+     * @param  InstanceInterface $instance
+     * @param  Validator      $validator
+     * @return Redirect::route
+     */
+    public function updateFailed(InstanceInterface $instance, Validator $validator)
+    {
+        return Redirect::route('pages.edit', $instance->identity())
+            ->withInput()
+            ->withErrors($validator->errors())
+            ->with('message', 'Oops, there was an error');
+    }
+
+    /**
+     * Remove the specified page from storage.
+     *
+     * @param  int      $id
+     * @return Response
+     */
+    public function destroy($id)
+    {
+        $page_destroyer = \App::make('Services\Pages\PageDestroyer');
+
+        return $page_destroyer->destroy($this->page, $this, $id, Input::except('_method'));
+    }
+
+    /**
+     * Handle successful page destroy
+     *
+     * @param  InstanceInterface $instance
+     * @return Redirect::route
+     */
+    public function destroySucceeded(InstanceInterface $instance)
+    {
+        return Redirect::route('pages.index')->with('message', 'Page was successfully deleted');
+    }
+
+    /**
+     * Handle an error with page destroy
+     *
+     * @param  InstanceInterface $instance
+     * @return Redirect::route
+     */
+    public function destroyFailed(InstanceInterface $instance)
+    {
+        return Redirect::route('pages.index')->with('message', 'Oops, couldn\'t delete that page');
+    }
 }

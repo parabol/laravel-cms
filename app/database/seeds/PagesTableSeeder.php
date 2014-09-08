@@ -2,13 +2,17 @@
 
 class PagesTableSeeder extends Seeder {
 
-	/**
-	 * Auto generated seed file
-	 *
-	 * @return void
-	 */
-	public function run()
-	{
-	}
+    public function run()
+    {
+        // Uncomment the below to wipe the table clean before populating
+        // DB::table('pages')->truncate();
+
+        $pages = array(
+
+        );
+
+        // Uncomment the below to run the seeder
+        // DB::table('pages')->insert($pages);
+    }
 
 }

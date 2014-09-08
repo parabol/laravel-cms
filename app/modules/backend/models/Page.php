@@ -1,14 +1,14 @@
-<?php
+<?php namespace App\Modules\Backend\Models;
 
-class Page extends Eloquent {
-	protected $guarded = array();
+use \Contracts\Instances\InstanceInterface;
+use Illuminate\Database\Eloquent\Model as Eloquent;
 
-	public static $rules = array(
-		'title' => 'required',
-		'slug' => 'required',
-		'content' => '',
-		'keyword' => '',
-		'desc' => '',
-		'status' => ''
-	);
+class Page extends Eloquent implements InstanceInterface
+{
+    protected $guarded = [];
+
+    public function identity()
+    {
+        return $this->id;
+    }
 }

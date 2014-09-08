@@ -4,4 +4,9 @@
 	"provider": [
 		"App\\Modules\\Backend\\BackendServiceProvider"
 	],
+	"autoload": {
+		"classmap": [
+			"lib"
+		]
+	}
 }

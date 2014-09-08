@@ -22,5 +22,4 @@ return array(
         'newPermissionPost' => 'permissions-management',
         'showPermission' => 'permissions-management',
         'putPermission' => 'permissions-management',
-        'indexPages' => 'indexPages'
 );

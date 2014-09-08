@@ -24,9 +24,9 @@
                         @endif
                     </ul>
                 </li>
-                @if($currentUser->hasAccess('indexPages'))
+                @if($currentUser->hasAccess('pages.index'))
                 <li>
-                    <a href="{{ URL::route('indexPages') }}"><i class="fa fa-list-alt"></i> 
+                    <a href="{{ URL::route('pages.index') }}"><i class="fa fa-list-alt"></i> 
                         <span>{{ trans('pages.titles.menu') }}</span>
                         <i class="fa fa-angle-left pull-right"></i>
                     </a>

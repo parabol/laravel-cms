@@ -133,7 +133,8 @@ return array(
         'BigName\BackupManager\Integrations\Laravel\BackupManagerServiceProvider',
         'Way\Generators\GeneratorsServiceProvider',
         'Xethron\MigrationsGenerator\MigrationsGeneratorServiceProvider',
-        'Orangehill\Iseed\IseedServiceProvider'
+        'Orangehill\Iseed\IseedServiceProvider',
+        'Providers\RepositoriesServiceProvider'
 	),
 
 	/*
