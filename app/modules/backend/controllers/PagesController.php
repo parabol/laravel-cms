@@ -3,7 +3,7 @@
 use MrJuliuss\Syntara\Controllers\BaseController;
 
 use \Services\PageCreator;
-use \Contracts\Repositories\PageRepositoryInterface;
+use App\Modules\Backend\lib\Contracts\Repositories\PageRepositoryInterface;
 use \Contracts\Instances\InstanceInterface;
 use \Contracts\Notification\CreatorInterface;
 use \Contracts\Notification\UpdaterInterface;

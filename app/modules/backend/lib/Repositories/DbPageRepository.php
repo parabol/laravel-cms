@@ -1,7 +1,8 @@
-<?php namespace Repositories;
+<?php namespace App\Modules\Backend\lib\Repositories;
 
-use Contracts\Repositories\PageRepositoryInterface;
+use App\Modules\Backend\lib\Contracts\Repositories\PageRepositoryInterface;
 use App\Modules\Backend\Models\Page;
+use \Repositories\DbRepository;
 
 class DbPageRepository extends DbRepository implements PageRepositoryInterface
 {

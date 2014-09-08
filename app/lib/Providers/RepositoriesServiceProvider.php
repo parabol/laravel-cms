@@ -7,8 +7,8 @@ class RepositoriesServiceProvider extends ServiceProvider
     public function register()
     {
         $this->app->bind(
-            'Contracts\Repositories\PageRepositoryInterface',
-            'Repositories\DbPageRepository'
+            'App\Modules\Backend\lib\Contracts\Repositories\PageRepositoryInterface',
+            'App\Modules\Backend\lib\Repositories\DbPageRepository'
         );
     }
 }
