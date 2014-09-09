@@ -1,6 +1,6 @@
 <?php namespace App\Modules\Backend\Controllers;
 
-use MrJuliuss\Syntara\Controllers\BaseController;
+//use MrJuliuss\Syntara\Controllers\BaseController;
 
 use App\Modules\Backend\lib\Services\Pages\PageCreator;
 use App\Modules\Backend\lib\Contracts\Repositories\PageRepositoryInterface;
@@ -17,7 +17,7 @@ use Illuminate\Support\Facades\Redirect;
 
 use App\Modules\Backend\Models\Page;
 
-class PagesController extends BaseController implements CreatorInterface, UpdaterInterface, DestroyerInterface
+class PagesController extends RootController implements CreatorInterface, UpdaterInterface, DestroyerInterface
 {
 
     /**

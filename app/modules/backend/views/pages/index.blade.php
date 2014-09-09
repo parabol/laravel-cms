@@ -17,11 +17,11 @@
                 <table id="datatable" class="table table-striped table-bordered">
                     <thead>
                         <tr>
+                            <th>Id</th>
                             <th>Name</th>
                             <th>Type</th>
                             <th>Slug</th>
                             <th>Title tag</th>
-                            <th>Status</th>
                             <th>Edit</th>
                             <th>Delete</th>
                         </tr>
@@ -29,11 +29,11 @@
                     <tbody>
                         @foreach ($pages as $page)
                             <tr>
+                                <td>{{ $page->id }}</td>
                                 <td>{{ $page->name }}</td>
                                 <td>{{ $page->type }}</td>
                                 <td>{{ $page->slug }}</td>
                                 <td>{{ $page->title_tag }}</td>
-                                <td>{{ $page->status }}</td>
 
                                 <td>
                                 {{ link_to_route('pages.edit', 'Edit', array($page->id), array('class' => 'btn btn-info')) }}
