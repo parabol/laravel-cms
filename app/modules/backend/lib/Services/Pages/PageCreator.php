@@ -44,7 +44,7 @@ class PageCreator
             }
 
         } else {
-            //return $listener->creationFailedValidation($this->validator);
+            return $listener->creationFailed($this->validator);
         }
     }
 }

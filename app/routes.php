@@ -16,6 +16,9 @@ Route::get('/', array(
     'uses' => 'App\Modules\Frontend\Controllers\HomeController@showWelcome')
 );
 
+Route::get('{page}', array('as' => 'getPage', 'uses' => 'App\Modules\Frontend\Controllers\PagesController@getPage'));
+Route::get('{type}/{slug}', array('as' => 'getPageType', 'uses' => 'App\Modules\Frontend\Controllers\PagesController@getPageType'));
+
 Route::group(array('before' => 'basicAuth', 'prefix' => Config::get('syntara::config.uri')), function()
 {
     Route::resource('pages','App\Modules\Backend\Controllers\PagesController');

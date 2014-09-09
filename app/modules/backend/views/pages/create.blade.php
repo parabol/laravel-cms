@@ -3,9 +3,11 @@
 @section('content')
 
 @if ($errors->any())
-	<ul>
-	    {{ implode('', $errors->all('<li class="error">:message</li>')) }}
-	</ul>
+<div class="alert alert-danger alert-dismissable">
+    <i class="fa fa-ban"></i>
+    <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
+    {{ implode('', $errors->all('<li class="error">:message</li>')) }}
+</div>
 @endif
 <div class="row">
     <div class="col-lg-12">

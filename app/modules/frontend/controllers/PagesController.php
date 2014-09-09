@@ -2,11 +2,8 @@
 
 use App\Controllers\BaseController;
 use Illuminate\Support\Facades\View;
-use Illuminate\Support\Facades\Request;
-use Illuminate\Support\Facades\Route;
-use Illuminate\Routing\Controller;
 
-class HomeController extends \BaseController {
+class PagesController extends \BaseController {
 
 	/*
 	|--------------------------------------------------------------------------
@@ -26,8 +23,18 @@ class HomeController extends \BaseController {
 		View::addNamespace('frontend', __DIR__.'/../views');
 	}
 
-	public function showWelcome()
+	public function getPage($page)
 	{
-		return View::make('frontend::hello');
+		return View::make('frontend::page', array('page' => $page));
+		/*$request = Request::create('pages@showPage', 'GET', array('pages' => $page));
+		Controller::callAction('App\Modules\Frontend\Controllers\PagesController@showPage', array(null));
+		return Route::dispatch($request)->getContent();
+		\App::make('App\Modules\Frontend\Controllers\PagesController')->showPage($page);*/
 	}
+
+	public function getPageType($type, $slug)
+	{
+		return View::make('frontend::page', array('page' => $type.$slug));
+	}
+
 }

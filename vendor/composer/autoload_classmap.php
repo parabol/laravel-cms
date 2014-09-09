@@ -19,6 +19,7 @@ return array(
     'App\\Modules\\Backend\\lib\\Services\\Pages\\PageUpdater' => $baseDir . '/app/modules/backend/lib/Services/Pages/PageUpdater.php',
     'App\\Modules\\Backend\\lib\\Validators\\PageValidator' => $baseDir . '/app/modules/backend/lib/Validators/PageValidator.php',
     'App\\Modules\\Frontend\\Controllers\\HomeController' => $baseDir . '/app/modules/frontend/controllers/HomeController.php',
+    'App\\Modules\\Frontend\\Controllers\\PagesController' => $baseDir . '/app/modules/frontend/controllers/PagesController.php',
     'App\\Modules\\Frontend\\FrontendServiceProvider' => $baseDir . '/app/modules/frontend/FrontendServiceProvider.php',
     'Aws\\AutoScaling\\AutoScalingClient' => $vendorDir . '/aws/aws-sdk-php/src/Aws/AutoScaling/AutoScalingClient.php',
     'Aws\\AutoScaling\\Enum\\LifecycleState' => $vendorDir . '/aws/aws-sdk-php/src/Aws/AutoScaling/Enum/LifecycleState.php',
